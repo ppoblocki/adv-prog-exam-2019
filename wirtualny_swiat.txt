@@ -1,0 +1,4 @@
+0
+Czlowiek 1 1 5 0
+Mlecz 16 16 0 0
+superzdolnosc False 0 0
