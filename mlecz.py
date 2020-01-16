@@ -1,33 +1,29 @@
+"""Mlecz"""
 from random import randint
-
 from roslina import Roslina
 
 KOLOR = (250, 255, 0)
 
-
 class Mlecz(Roslina):
-
+    """Klasa - Mlecz"""
     def __init__(self, x, y, s):
         super().__init__(0, 0, x, y)
         self.kolor = KOLOR
         self.swiat = s
 
     def akcja(self):
-        for i in range(0, 3):
-            czyRozprzestrzeniaSie = randint(0, 100) < 20
-
-            if czyRozprzestrzeniaSie:
-                czyWspolrzedneOK = False
-                noweWspolrzedne = (self.x, self.y)
-
-                while not czyWspolrzedneOK:
+        for _ in range(0, 3):
+            rozprzestrzenia_sie = randint(0, 100) < 20
+            if rozprzestrzenia_sie:
+                wspolrzedne_ok = False
+                nowe_wspolrzedne = (self.x, self.y)
+                while not wspolrzedne_ok:
                     wspolrzedne = (self.x, self.y)
-                    noweWspolrzedne = self.losujKierunekRuchu(wspolrzedne)
-                    czyWspolrzedneOK = self.swiat.czyWspolrzednePoprawne(noweWspolrzedne)
-
-                napotkany = self.swiat.organizmNaXY(noweWspolrzedne[0], noweWspolrzedne[1])
-                x, y = noweWspolrzedne[0], noweWspolrzedne[1]
+                    nowe_wspolrzedne = self.losuj_kierunek_ruchu(wspolrzedne)
+                    wspolrzedne_ok = self.swiat.czyWspolrzednePoprawne(nowe_wspolrzedne)
+                napotkany = self.swiat.organizmNaXY(nowe_wspolrzedne[0], nowe_wspolrzedne[1])
+                x_poz, y_poz = nowe_wspolrzedne[0], nowe_wspolrzedne[1]
                 if napotkany is None:
-                    self.swiat.dodajGatunekRosliny(self, x, y)
+                    self.swiat.dodajGatunekRosliny(self, x_poz, y_poz)
                 else:
                     napotkany.kolizja(self)

@@ -1,6 +1,5 @@
 from organizm import Organizm
 
-
 class Zwierze(Organizm):
 
     def __init__(self, sila=0, inicjatywa=0, x=0, y=0):
@@ -12,7 +11,7 @@ class Zwierze(Organizm):
 
         while not czyWspolrzedneOK:
             wspolrzedne = (self.x, self.y)
-            noweWspolrzedne = self.losujKierunekRuchu(wspolrzedne)
+            noweWspolrzedne = self.losuj_kierunek_ruchu(wspolrzedne)
             czyWspolrzedneOK = self.swiat.czyWspolrzednePoprawne(noweWspolrzedne)
 
         napotkany = self.swiat.organizmNaXY(noweWspolrzedne[0], noweWspolrzedne[1])
@@ -25,7 +24,7 @@ class Zwierze(Organizm):
         else:
             # self.kolizja(napotkany)
             self.kolizja(napotkany)
-            if self.czyZyje:
+            if self.czy_zyje:
                 self.wiek += 1
 
     def kolizja(self, napotkany):
@@ -34,15 +33,15 @@ class Zwierze(Organizm):
             self.y = self.prevY
             self.swiat.dodajOrganizmWOtoczeniu(self)
         else:
-            if napotkany.czyOdbilAtak(self):
-                if self.czyZyje:
+            if napotkany.odbil_atak(self):
+                if self.czy_zyje:
                     self.x = self.prevX
                     self.y = self.prevY
             else:
                 napotkany.zabij()
 
-    def czyOdbilAtak(self, atakujacy):
-        if atakujacy.getSila() >= self.sila:
+    def odbil_atak(self, atakujacy):
+        if atakujacy.get_sila() >= self.sila:
             return False
         else:
             return True

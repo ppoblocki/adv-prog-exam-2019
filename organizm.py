@@ -1,132 +1,132 @@
+"""Organizm"""
 from abc import ABC, abstractmethod
 from random import randint
 
-
 class Organizm(ABC):
-
+    """Klasa - Organizm"""
     def __init__(self, sila=0, inicjatywa=0, x=0, y=0):
         self.sila = sila
         self.inicjatywa = inicjatywa
         self.x = x
         self.y = y
-
-        self.silaBazowa = self.sila
-        self.prevX = self.x
-        self.prevY = self.y
+        self.sila_bazowa = self.sila
+        self.prev_x = self.x
+        self.prev_y = self.y
         self.wiek = 0
-        self.czyZyje = True
+        self.czy_zyje = True
         self.kolor = ()
         self.swiat = None
 
     @abstractmethod
     def akcja(self):
-        pass
+        """akcja()"""
 
     @abstractmethod
     def kolizja(self, napotkany):
-        pass
+        """kolizja()"""
 
     def rysuj(self):
+        """rysuj()"""
         return self.kolor
 
     @abstractmethod
-    def czyOdbilAtak(self, atakujacy):
-        pass
+    def odbil_atak(self, atakujacy):
+        """odbil_atak()"""
 
-    def getX(self):
+    def get_x(self):
+        """get_x()"""
         return self.x
 
-    def setX(self, x):
+    def set_x(self, x):
+        """set_x()"""
         self.x = x
 
-    def getY(self):
+    def get_y(self):
+        """get_y()"""
         return self.y
 
-    def setY(self, y):
+    def set_y(self, y):
+        """set_y()"""
         self.y = y
 
-    def getPrevX(self):
-        return self.prevX
+    def get_prev_x(self):
+        """get_prev_x()"""
+        return self.prev_x
 
-    def getPrevY(self):
-        return self.prevY
+    def get_prev_y(self):
+        """get_prev_y()"""
+        return self.prev_y
 
-    def setSila(self, sila):
+    def set_sila(self, sila):
+        """set_sila()"""
         self.sila = sila
 
-    def getSila(self):
+    def get_sila(self):
+        """get_sila()"""
         return self.sila
 
-    def getInicjatywa(self):
+    def get_inicjatywa(self):
+        """get_inicjatywa()"""
         return self.inicjatywa
 
-    def getCzyZyje(self):
-        return self.czyZyje
+    def get_czy_zyje(self):
+        """get_czy_zyje()"""
+        return self.czy_zyje
 
-    def getKolor(self):
+    def get_kolor(self):
+        """get_kolor()"""
         return self.kolor
 
-    def getWiek(self):
+    def get_wiek(self):
+        """get_wiek()"""
         return self.wiek
 
-    def setWiek(self, wiek):
+    def set_wiek(self, wiek):
+        """set_wiek()"""
         self.wiek = wiek
 
-    def setKolor(self, kolor):
+    def set_kolor(self, kolor):
+        """set_kolor()"""
         self.kolor = kolor
 
     def zabij(self):
-        self.czyZyje = False
+        """zabij()"""
+        self.czy_zyje = False
         self.sila = 0
 
-    def losujKierunekRuchu(self, wspolrzedne, skok=1):
+    def losuj_kierunek_ruchu(self, wspolrzedne, skok=1):
+        """losuj_kierunek_ruchu()"""
         kierunek = randint(0, 7)
-        x = wspolrzedne[0]
-        y = wspolrzedne[1]
-
-        # Gora
+        x_poz = wspolrzedne[0]
+        y_poz = wspolrzedne[1]
         if kierunek == 0:
-            y -= skok
-
-        # Dol
+            y_poz -= skok
         elif kierunek == 1:
-            y += skok
-
-        # Lewo
+            y_poz += skok
         elif kierunek == 2:
-            x -= skok
-
-        # Prawo
+            x_poz -= skok
         elif kierunek == 3:
-            x += skok
-
-        # Lewy gorny
+            x_poz += skok
         elif kierunek == 4:
-            x -= skok
-            y -= skok
-
-        # Prawy gorny
+            x_poz -= skok
+            y_poz -= skok
         elif kierunek == 5:
-            x += skok
-            y -= skok
-
-        # Lewy dolny
+            x_poz += skok
+            y_poz -= skok
         elif kierunek == 6:
-            x -= skok
-            y += skok
-
-        # Prawy dolny
+            x_poz -= skok
+            y_poz += skok
         elif kierunek == 7:
-            x += skok
-            y += skok
-
-        return (x, y)
+            x_poz += skok
+            y_poz += skok
+        return (x_poz, y_poz)
 
     def print_info(self):
+        """print_info()"""
         print(self.x)
         print(self.y)
         print(self.sila)
         if self.swiat is None:
-            print("Brak referencji do swiata")
+            print("Brak referencji do swiata.")
         else:
             print("Referencja do swiata poprawna!")

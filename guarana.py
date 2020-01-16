@@ -1,11 +1,11 @@
+"""Guarana"""
 from roslina import Roslina
 from zwierze import Zwierze
 
 KOLOR = (244, 92, 66)
 
-
 class Guarana(Roslina):
-
+    """Klasa - Guarana"""
     def __init__(self, x, y, s):
         super().__init__(0, 0, x, y)
         self.kolor = KOLOR
@@ -13,10 +13,10 @@ class Guarana(Roslina):
 
     def kolizja(self, napotkany):
         if isinstance(napotkany, Zwierze):
-            napotkany.setSila(napotkany.getSila() + 3)
+            napotkany.set_sila(napotkany.get_sila() + 3)
             self.zabij()
 
-    def czyOdbilAtak(self, atakujacy):
+    def odbil_atak(self, atakujacy):
         if isinstance(atakujacy, Zwierze):
-            atakujacy.setSila(atakujacy.getSila() + 3)
+            atakujacy.set_sila(atakujacy.get_sila() + 3)
         return False

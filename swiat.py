@@ -13,8 +13,6 @@ from mlecz import Mlecz
 from trawa import Trawa
 from wilczejagody import WilczeJagody
 
-
-
 # Kolory
 black = (0, 0, 0)
 white = (255, 255, 255)
@@ -91,11 +89,11 @@ class Swiat:
                         if self.czyCzlowiekGra:
                             for organizm in self.organizmy:
                                 if isinstance(organizm, Czlowiek):
-                                    if organizm.getCooldown() == 0:
-                                        organizm.setSuperzdolnosc(True)
-                                        organizm.setCzasTrwania(0)
-                                        organizm.setCooldown(5)
-                                        organizm.setKolor(red)
+                                    if organizm.get_cooldown() == 0:
+                                        organizm.set_superzdolnosc(True)
+                                        organizm.set_czas_trwania(0)
+                                        organizm.set_cooldown(5)
+                                        organizm.set_kolor(red)
                     # Nastepna tura
                     elif event.key == pygame.K_n:
                         if len(self.organizmy) < self.max_liczba_organizmow:
@@ -123,13 +121,13 @@ class Swiat:
                 organizmy_w_turze = len(self.organizmy)
                 # Wykonanie tury dla zyjacych organizmow
                 for i in range(0, organizmy_w_turze):
-                    if self.organizmy[i].getCzyZyje():
+                    if self.organizmy[i].get_czy_zyje():
                         self.organizmy[i].akcja()
 
                 # Usuwanie martwych organizmow
                 pozostaleOrganizmy = []
                 for organizm in self.organizmy:
-                    if organizm.getCzyZyje():
+                    if organizm.get_czy_zyje():
                         pozostaleOrganizmy.append(organizm)
                 self.organizmy = pozostaleOrganizmy
                 del pozostaleOrganizmy
@@ -156,18 +154,18 @@ class Swiat:
             if isinstance(organizm, Czlowiek):
                 indeks_czlowieka = i
             org = organizm.__class__.__name__ + " " \
-                  + str(organizm.getX()) + " " \
-                  + str(organizm.getY()) + " " \
-                  + str(organizm.getSila()) + " " \
-                  + str(organizm.getWiek()) + "\n"
+                  + str(organizm.get_x()) + " " \
+                  + str(organizm.get_y()) + " " \
+                  + str(organizm.get_sila()) + " " \
+                  + str(organizm.get_wiek()) + "\n"
             plik.write(org)
 
         if self.czyCzlowiekGra and indeks_czlowieka != -1:
             czlowiek = self.organizmy[indeks_czlowieka]
             ult = "superzdolnosc " \
-                  + str(czlowiek.getSuperzdolnosc()) + " " \
-                  + str(czlowiek.getCzasTrwania()) + " " \
-                  + str(czlowiek.getCooldown())
+                  + str(czlowiek.get_superzdolnosc()) + " " \
+                  + str(czlowiek.get_czas_trwania()) + " " \
+                  + str(czlowiek.get_cooldown())
             plik.write(ult)
 
         plik.close()
@@ -190,13 +188,13 @@ class Swiat:
                         if isinstance(organizm, Czlowiek):
                             self.czyCzlowiekGra = True
                             if dane[1] == 'True':
-                                organizm.setSuperzdolnosc(True)
-                                organizm.setKolor(red)
+                                organizm.set_superzdolnosc(True)
+                                organizm.set_kolor(red)
                             else:
-                                organizm.setSuperzdolnosc(False)
-                                organizm.setKolor(black)
-                            organizm.setCzasTrwania(int(dane[2]))
-                            organizm.setCooldown(int(dane[3]))
+                                organizm.set_superzdolnosc(False)
+                                organizm.set_kolor(black)
+                            organizm.set_czas_trwania(int(dane[2]))
+                            organizm.set_cooldown(int(dane[3]))
                 else:
                     nowy = dane[0] + "(%s, %s, self)" % (int(dane[1]), int(dane[2]))
                     exec("self.organizmy.append(%s)" % (nowy))
@@ -245,11 +243,11 @@ class Swiat:
         screen.fill(white)
         # Rysowanie organizmow
         for organizm in self.organizmy:
-            kolor = organizm.getKolor()
+            kolor = organizm.get_kolor()
             pygame.draw.rect(screen, kolor, pygame.Rect(
-                50 + organizm.getX() * pixel, 10 + organizm.getY() * pixel, pixel, pixel))
+                50 + organizm.get_x() * pixel, 10 + organizm.get_y() * pixel, pixel, pixel))
             nazwa = organizm.__class__.__name__[0]
-            screen.blit(font.render(nazwa, True, white), (50 + organizm.getX() * pixel + 3, 10 + organizm.getY() * pixel))
+            screen.blit(font.render(nazwa, True, white), (50 + organizm.get_x() * pixel + 3, 10 + organizm.get_y() * pixel))
 
 
         pygame.draw.rect(screen, black, pygame.Rect(45, 5, 5, 610))
@@ -323,16 +321,16 @@ class Swiat:
         [5][6][7]
         '''
         pola = []
-        pola.append((rodzic.getX() - 1, rodzic.getY() - 1))
-        pola.append((rodzic.getX(), rodzic.getY() - 1))
-        pola.append((rodzic.getX() + 1, rodzic.getY() - 1))
+        pola.append((rodzic.get_x() - 1, rodzic.get_y() - 1))
+        pola.append((rodzic.get_x(), rodzic.get_y() - 1))
+        pola.append((rodzic.get_x() + 1, rodzic.get_y() - 1))
 
-        pola.append((rodzic.getX() - 1, rodzic.getY()))
-        pola.append((rodzic.getX() + 1, rodzic.getY()))
+        pola.append((rodzic.get_x() - 1, rodzic.get_y()))
+        pola.append((rodzic.get_x() + 1, rodzic.get_y()))
 
-        pola.append((rodzic.getX() - 1, rodzic.getY() + 1))
-        pola.append((rodzic.getX(), rodzic.getY() + 1))
-        pola.append((rodzic.getX() + 1, rodzic.getY() + 1))
+        pola.append((rodzic.get_x() - 1, rodzic.get_y() + 1))
+        pola.append((rodzic.get_x(), rodzic.get_y() + 1))
+        pola.append((rodzic.get_x() + 1, rodzic.get_y() + 1))
 
         mozliwePola = []  # lista pustych pol dla nowego organizmu
         for pole in pola:
@@ -360,7 +358,7 @@ class Swiat:
 
     def organizmNaXY(self, x, y):
         for organizm in self.organizmy:
-            if (organizm.getX(), organizm.getY()) == (x, y):
+            if (organizm.get_x(), organizm.get_y()) == (x, y):
                 return organizm
         return None
 
