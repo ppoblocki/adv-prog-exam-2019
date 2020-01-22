@@ -28,7 +28,7 @@ class Lis(Zwierze):
 
         mozliwe_pola = []  # lista pol dla lisa
         for pole in pola:
-            if self.swiat.czyWspolrzednePoprawne(pole):
+            if self.swiat.wspolrzedne_poprawne(pole):
                 organizm_x_y = self.swiat.organizmNaXY(pole[0], pole[1])
                 if organizm_x_y is None or organizm_x_y.get_sila() <= self.sila:
                     mozliwe_pola.append(pole)

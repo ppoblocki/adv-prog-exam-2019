@@ -23,7 +23,7 @@ class Zolw(Zwierze):
             while not wspolrzedne_ok:
                 wspolrzedne = (self.x, self.y)
                 nowe_wspolrzedne = self.losuj_kierunek_ruchu(wspolrzedne)
-                wspolrzedne_ok = self.swiat.czyWspolrzednePoprawne(nowe_wspolrzedne)
+                wspolrzedne_ok = self.swiat.wspolrzedne_poprawne(nowe_wspolrzedne)
             napotkany = self.swiat.organizmNaXY(nowe_wspolrzedne[0], nowe_wspolrzedne[1])
             self.prevX = self.x
             self.prevY = self.y

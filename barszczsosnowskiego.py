@@ -27,7 +27,7 @@ class BarszczSosnowskiego(Roslina):
 
         poprawne_pola = []
         for pole in pola:
-            if self.swiat.czyWspolrzednePoprawne(pole):
+            if self.swiat.wspolrzedne_poprawne(pole):
                 poprawne_pola.append(pole)
 
         for pole in poprawne_pola:

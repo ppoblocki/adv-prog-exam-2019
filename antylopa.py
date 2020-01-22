@@ -22,7 +22,7 @@ class Antylopa(Zwierze):
         while not czy_wspolrzedne_ok:
             wspolrzedne = (self.x, self.y)
             nowe_wspolrzedne = self.losuj_kierunek_ruchu(wspolrzedne, skok=2)
-            czy_wspolrzedne_ok = self.swiat.czyWspolrzednePoprawne(nowe_wspolrzedne)
+            czy_wspolrzedne_ok = self.swiat.wspolrzedne_poprawne(nowe_wspolrzedne)
 
         napotkany = self.swiat.organizmNaXY(nowe_wspolrzedne[0], nowe_wspolrzedne[1])
         self.prevX = self.x
@@ -58,7 +58,7 @@ class Antylopa(Zwierze):
 
                 mozliwe_pola = []  # lista pol dla antylopy do ucieczki
                 for pole in pola:
-                    if self.swiat.czyWspolrzednePoprawne(pole):
+                    if self.swiat.wspolrzedne_poprawne(pole):
                         organizm_x_y = self.swiat.organizmNaXY(pole[0], pole[1])
                         if organizm_x_y is None:
                             mozliwe_pola.append(pole)

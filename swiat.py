@@ -295,7 +295,7 @@ class Swiat:
         # Renderowanie zmian
         pygame.display.flip()
 
-    def czyWspolrzednePoprawne(self, wspolrzedne):
+    def wspolrzedne_poprawne(self, wspolrzedne):
         poprawne = False
 
         if 0 <= wspolrzedne[0] < self.szerokosc:
@@ -334,7 +334,7 @@ class Swiat:
 
         mozliwePola = []  # lista pustych pol dla nowego organizmu
         for pole in pola:
-            if self.czyWspolrzednePoprawne(pole):
+            if self.wspolrzedne_poprawne(pole):
                 if self.organizmNaXY(pole[0], pole[1]) is None:
                     mozliwePola.append(pole)
 
@@ -342,6 +342,7 @@ class Swiat:
             pole = mozliwePola[randint(0, len(mozliwePola) - 1)]
             nowy = type(rodzic).__name__ + "(%s, %s, self)" % (pole[0], pole[1])
             exec("self.dodajOrganizm(%s)" % (nowy))
+            a = globals()[type(rodzic).__name__](1,2,3)
 
 
     def dodajGatunekRosliny(self, gatunek, x, y):

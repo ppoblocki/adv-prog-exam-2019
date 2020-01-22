@@ -2,28 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55d85150-80b4-40e9-89e3-d341c03ae653" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PYLINT_SCORE_AFTER_SMALL_FIXES" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/wirtualny_swiat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wirtualny_swiat.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PYLINT_SCORE_AFTER" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PYLINT_SCORE_BEFORE" beforeDir="false" afterPath="$PROJECT_DIR$/PYLINT_SCORE_BEFORE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/antylopa.py" beforeDir="false" afterPath="$PROJECT_DIR$/antylopa.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/barszczsosnowskiego.py" beforeDir="false" afterPath="$PROJECT_DIR$/barszczsosnowskiego.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cyberowca.py" beforeDir="false" afterPath="$PROJECT_DIR$/cyberowca.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/czlowiek.py" beforeDir="false" afterPath="$PROJECT_DIR$/czlowiek.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guarana.py" beforeDir="false" afterPath="$PROJECT_DIR$/guarana.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lis.py" beforeDir="false" afterPath="$PROJECT_DIR$/lis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mlecz.py" beforeDir="false" afterPath="$PROJECT_DIR$/mlecz.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/organizm.py" beforeDir="false" afterPath="$PROJECT_DIR$/organizm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/owca.py" beforeDir="false" afterPath="$PROJECT_DIR$/owca.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/roslina.py" beforeDir="false" afterPath="$PROJECT_DIR$/roslina.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/swiat.py" beforeDir="false" afterPath="$PROJECT_DIR$/swiat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trawa.py" beforeDir="false" afterPath="$PROJECT_DIR$/trawa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wilczejagody.py" beforeDir="false" afterPath="$PROJECT_DIR$/wilczejagody.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wilk.py" beforeDir="false" afterPath="$PROJECT_DIR$/wilk.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zolw.py" beforeDir="false" afterPath="$PROJECT_DIR$/zolw.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zwierze.py" beforeDir="false" afterPath="$PROJECT_DIR$/zwierze.py" afterDir="false" />
     </list>
@@ -207,7 +193,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

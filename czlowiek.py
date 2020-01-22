@@ -20,48 +20,45 @@ class Czlowiek(Zwierze):
     def akcja(self):
         x_poz = self.x
         y_poz = self.y
-        key = self.swiat.getLastKeyboardEvent().key
-        if key == pygame.K_UP:
-            y_poz -= 1
-        elif key == pygame.K_DOWN:
-            y_poz += 1
-        elif key == pygame.K_LEFT:
-            x_poz -= 1
-        elif key == pygame.K_RIGHT:
-            x_poz += 1
+        klawisz = self.swiat.getLastKeyboardEvent().key
+        x_poz, y_poz = self.przesun_gracza(x_poz, y_poz, klawisz)
 
-        if self.swiat.czyWspolrzednePoprawne((x_poz, y_poz)):
-            napotkany = self.swiat.organizmNaXY(x_poz, y_poz)
-            self.prevX = self.x
-            self.prevY = self.y
-            self.x = x_poz
-            self.y = y_poz
-            if napotkany is None:
-                self.wiek += 1
-                if self.superzdolnosc_wlaczona:
-                    self.kolor = ULT_KOLOR
-                    self.czas_trwania += 1
-                    if self.czas_trwania > 5:
-                        self.superzdolnosc_wlaczona = False
-                        self.kolor = KOLOR
-                else:
-                    if self.cooldown > 0:
-                        self.cooldown -= 1
-            else:
-                self.kolizja(napotkany)
-                if self.czyZyje:
-                    self.wiek += 1
-                    if self.superzdolnosc_wlaczona:
-                        self.kolor = ULT_KOLOR
-                        self.czas_trwania += 1
-                        if self.czas_trwania > 5:
-                            self.superzdolnosc_wlaczona = False
-                            self.kolor = KOLOR
-                    else:
-                        if self.cooldown > 0:
-                            self.cooldown -= 1
+        if self.swiat.wspolrzedne_poprawne((x_poz,y_poz)):
+            self.wykonaj_ruch(x_poz, y_poz)
+
+    def wykonaj_ruch(self, x_poz, y_poz):
+        obszar = self.swiat.organizmNaXY(x_poz, y_poz)
+        self.prevX = self.x
+        self.prevY = self.y
+        self.x = x_poz
+        self.y = y_poz
+        if obszar is None:
+            self.odpocznij()
         else:
-            pass
+            self.napotkano_przeciwnika(obszar)
+
+    def odpocznij(self):
+        self.wiek += 1
+        if self.superzdolnosc_wlaczona:
+            self.kolor = ULT_KOLOR
+            self.czas_trwania += 1
+            self.odswiez_status_superzdolnosci()
+        else:
+            self.odswiez_cooldown()
+
+    def odswiez_status_superzdolnosci(self):
+        if self.czas_trwania > 5:
+            self.superzdolnosc_wlaczona = False
+            self.kolor = KOLOR
+
+    def odswiez_cooldown(self):
+        if self.cooldown > 0:
+            self.cooldown -= 1
+
+    def napotkano_przeciwnika(self, przeciwnik):
+        self.kolizja(przeciwnik)
+        if self.czy_zyje:
+            self.odpocznij()
 
     def kolizja(self, napotkany):
         if napotkany.odbil_atak(self):
@@ -88,6 +85,17 @@ class Czlowiek(Zwierze):
                 atakujacy.zabij()
                 result = True
         return result
+
+    def przesun_gracza(self, x_poz, y_poz, klawisz):
+        if klawisz == pygame.K_UP:
+            y_poz -= 1
+        elif klawisz == pygame.K_DOWN:
+            y_poz += 1
+        elif klawisz == pygame.K_LEFT:
+            x_poz -= 1
+        elif klawisz == pygame.K_RIGHT:
+            x_poz += 1
+        return x_poz, y_poz
 
     def get_superzdolnosc(self):
         """Pobiera status superzdolnosci."""
